@@ -38,6 +38,10 @@ app.get('/', (req, res) => {
     res.send('Click flick server is working!')
 })
 
+app.get('/hi', (req, res) => {
+    res.send('lalalala');
+})
+
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`)
 })
