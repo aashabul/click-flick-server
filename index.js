@@ -44,7 +44,7 @@ run().catch(console.dir);
 // console.log(uri);
 
 app.get('/', (req, res) => {
-    res.send('Click flick server is working!')
+    res.send('Click flick server is working! 1#list of products added')
 })
 
 // app.get('/hi', (req, res) => {
