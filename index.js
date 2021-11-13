@@ -16,14 +16,23 @@ async function run() {
         await client.connect();
         const database = client.db('click_flick');
         const productsCollection = database.collection('products');
+        const orderCollection = database.collection('orders');
         console.log('hitting database');
 
-        // fetch products data from server
+        //fetch products data from server
         app.get('/products', async (req, res) => {
             const cursor = productsCollection.find({});
             const products = await cursor.toArray();
             res.send(products)
-        })
+        });
+
+        //post order to server
+        app.post('/orders', async (req, res) => {
+            const orders = req.body;
+            const result = await orderCollection.insertOne(orders);
+            console.log(orders);
+            res.json(result);
+        });
     }
     finally {
         // await client.close();
@@ -38,9 +47,9 @@ app.get('/', (req, res) => {
     res.send('Click flick server is working!')
 })
 
-app.get('/hi', (req, res) => {
-    res.send('lalalala');
-})
+// app.get('/hi', (req, res) => {
+//     res.send('hi boss');
+// })
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`)
